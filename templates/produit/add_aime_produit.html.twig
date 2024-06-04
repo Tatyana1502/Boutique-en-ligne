@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+<h1> Liste des produit favorites</h1>
+
+<table>
+    <tr>
+        <th>nom_produit</th>
+        <th>description_produit</th>
+        <th>prix_produit</th>
+        <th>categorie_produit</th>
+        <th>image_produit</th>
+        <th>quantity_produit</th>
+    </tr>
+    {% if favoriteProduct is not empty %}
+        {% for produit in favoriteProduct %}
+            <td>{{ produit.nom_produit }}</td>
+            <td>{{ produit.description_produit }}</td>
+            <td>{{ produit.prix_produit }}</td>
+            <td>{{ produit.categorie_produit }}</td>
+            <td>{{ produit.image_produit }}</td>
+            <td>{{ produit.quantity_produit }}</td>
+        {% endfor %}
+    {% endif %}
+
+</table>
+{% endblock %}

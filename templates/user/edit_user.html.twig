@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formuliare modifier !{% endblock %}
+
+{% block body %}
+
+
+<h1>Edit votre donnée</h1>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+    <button id="connection_submit">{{ 'Update' }}</button>
+{{ form_end(form) }}
+
+<a href='{{ path('all_user') }}'><button  id="connection_submit">back to list </button></a>
+
+{% endblock %}

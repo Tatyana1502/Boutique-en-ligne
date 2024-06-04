@@ -14,3 +14,10 @@ when@test:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+            handler_id: null
+            cookie_lifetime: 30 # 30 minutes en secondes
+            enabled: true
+            # cookie_lifetime: 30
+            # gc_maxlifetime: 30
+             # Длительность сессии (в секундах) после которой она будет уничтожена при отсутствии активности пользователя
+             # Установлено в 300 секунд (5 минут)

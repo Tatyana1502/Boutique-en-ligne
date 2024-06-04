@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LigneCommandeController!{% endblock %}
+
+{% block body %}
+
+
+<h1> Panier </h1>
+
+<div class="gallery_panie">
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for lignecommande in all_lignecommande %}
+        <div class="item_panie" style="border: 1px solid black;" >
+            <tr>
+                <div class="item_panie1">
+                    <img src="{{ asset('styles/image/' ~ lignecommande.getidProduit().getImageProduit()) }}" alt="Produit Image" class="item_panie">
+                </div>
+            </tr>
+            <tr>
+                <div class="item_panie1">
+                    <td> {{lignecommande.getidProduit().getNomProduit()}}</td><br>
+                </div>
+                <div class="item_panie1">
+                    <td> {{lignecommande.getidProduit().getPrixProduit()}}</td> €  <br>
+                </div>
+                <div class="item_panie1">
+                    <td> {{lignecommande.getQuantiteAchat()}} kg <br>
+                </div>
+                <div class="item_panie1">
+                    Quantity:
+                    <form id="quantityForm{{ lignecommande.idLigneCommande }}" action="{{ path('edit_LigneCommande', {'idLigneCommande': lignecommande.idLigneCommande}) }}" method="POST">
+                            <form id="quantityForm{{ lignecommande.idLigneCommande }}" action="{{ path('edit_LigneCommande', {'idLigneCommande': lignecommande.idLigneCommande}) }}" method="POST">
+                                <select name="quantite" onchange="submitForm('quantityForm{{ lignecommande.idLigneCommande }}')">
+                                    {% for i in 1..50 %}
+                                        <option value="{{ i }}" {% if i == lignecommande.getQuantiteAchat() %} selected {% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </form>
+                 </div>
+                <div class="item_panie1">
+                    Total: <td> {{lignecommande.getSousTotal()}}</td> € <br>
+                </div>
+                <div class="item_panie1">
+                    <a href="{{ path('suprime_LigneCommande', {'idLigneCommande':lignecommande.idLigneCommande}) }}"><button>suprime</button></a> <br>
+                </div>
+            </tr>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="item">
+    <a href="{{ path('all_produit') }}"><button>retour aux achats</button ></a> 
+    <a href="{{ path('add_tout_linge_commande', {'all_lignecommande': 'all'})  }}"><button>paye(commande)</button></a>
+</div>
+
+<script>
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
+</script>
+
+{% endblock %}

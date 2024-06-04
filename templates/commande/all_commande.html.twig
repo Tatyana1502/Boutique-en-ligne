@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+<h1> Liste de commande</h1>
+
+{% for commande in toutLigneCommande %}
+    <p class="chapeau">numero Commande :{{ commande.idCommande }}</p>
+    <p class="chapeau">Nom User : {{ commande.user.getNomUser }}, Email : {{ commande.user.getEmail }}, Phone : {{ commande.user.getPhoneUser }}</p>
+
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>nom produit</td>
+            <td>prix produit</td>
+            <td>quantite achat</td>
+            <td>total</td>
+        </tr>
+        {% for ligneCommande in commande.toutLigneCommande %}
+            <tr>
+                <td>{{ ligneCommande.idProduit.nom_produit }}</td>
+                <td>{{ ligneCommande.idProduit.prix_produit }}</td>
+                <td>{{ ligneCommande.quantite_achat }}</td>
+                <td>{{ ligneCommande.total}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endfor %}
+{% endblock %}
+
+

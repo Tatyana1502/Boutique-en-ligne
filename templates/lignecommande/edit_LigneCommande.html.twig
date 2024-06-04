@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formuliare ajouter !{% endblock %}
+
+{% block body %}
+
+
+<h1>add Commande</h1>
+{{ form_start(form) }}
+    <button>{{ 'Créer' }}</button>
+{{ form_end(form) }}
+
+<a href='{{ path('all_lignecommande') }}'><button>back to list </button></a>
+
+{% endblock %}

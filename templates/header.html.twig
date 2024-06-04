@@ -1,0 +1,91 @@
+                   
+<nav class="header-top">
+    <div class="burger-container">
+        <button class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <ul class="nav-menu" id="nav-menu">
+        <a href="{{ path('all_user') }}" style="text-decoration: underline;">All produit</a>
+        <a href="{{ path('select_produit_legume') }}">Legumes</a>
+        <a href="{{ path('select_produit_fruits') }}">Fruits</a>
+        <a href="{{ path('select_produit_baies') }}">Baieses</a>
+        <a href="{{ path('select_produit_citron') }}">Citrons</a>
+        <a href="{{ path('select_produit_apple') }}">Pomme de terre</a>
+        <a href="{{ path('select_produit_rasin') }}">Rasin</a>
+        <a href="{{ path('select_produit_noisettes') }}">Noisettes</a>
+    </ul>    
+    <a href="{{ path('app_home') }}" class="logo">T&#38;G</a>
+
+    <div class="search-bar">
+        <form action="{{ path('produit_search') }}" class="cherche-form" method="get">
+            <input type="search" name="q" class="cherche-input" placeholder="Cherche...">
+            <button type="submit" class="cherche-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form> 
+    </div>   
+
+    <a href="/{{ app.user ? 'logout':'login' }}">
+    {{ app.user ? 'Déconnecion' : 'Connéxion' }}  </a>
+        {% if app.user %}
+            {% if 'ROLE_ADMIN' in app.user.roles %}
+                <div class="dropdown">
+                    <button class="dropbtn">Produit</button>
+                    <div class="dropdown-content">
+                        <a href="{{ path('all_produit') }}">all produit</a> 
+                        <a href="{{ path('add_produit') }}">add produit</a>
+                    </div> 
+                </div>
+             {# ===========================button commande============================== #}
+                <div class="dropdown">         
+                    <button class="dropbtn">Commande</button>
+                    <div class="dropdown-content">
+                        <a href="{{ path('all_commande_admin') }}">Tout les Commande</a>
+                    </div>
+                </div>
+             {# ===========================button facture============================== #}
+                <div class="dropdown">         
+                    <button class="dropbtn">Facture</button>
+                    <div class="dropdown-content">
+                        <a href="{{ path('all_facture') }}">Tout les Facture</a>
+                    </div>
+                </div>
+             {# ===========================afiche tout les USERS============================== #}
+                <div class="dropdown"> 
+                    <button class="dropbtn">USERS</button>
+                    <div class="dropdown-content">  
+                        <a href="{{ path('all_user') }}" class="dropbtn">USERS</a>
+                        <a href="{{ path('select_user') }}" class="dropbtn">select USERS par role</a>
+                    </div> 
+                </div> 
+             {# ===========================afiche donnee entreprise============================= #}
+                <div class="dropdown">         
+                    <button class="dropbtn">Entreprise</button>
+                    <div class="dropdown-content">
+                        <a href="{{ path('entreprise') }}">Donnée Entreprise</a>
+                    </div> 
+                </div>  
+                 <a href="{{ path('delete_old_commands') }}" class="btn btn-danger">Delete Old Commands</a>
+
+        {% elseif 'ROLE_USER' in app.user.roles %}
+            <a href="{{ path('un_user') }}"><img src="{{ asset('styles/image/femme.png')}}" alt="un_user" class="image"></a>
+            <a href="{{ path('afficher_to_favorites') }}"><img src="{{ asset('styles/image/coeur1.png')}}" alt="Favorits" class="image"></a>
+             {# ===========================button PANIER============================== #}
+            <a href="{{ path('all_lignecommande') }}"><img src="{{ asset('styles/image/panier.png')}}" alt="Panie" class="image"></a> 
+        {% endif %}
+    {% endif %}
+</nav>
+
+<div class="header-bottom" style="border: 1px solid black;">
+    <a href="{{ path('all_produit') }}" class="header-bottom_all">all produit</a> 
+    <a href="{{ path('select_produit_legume') }}"><img src="{{ asset('styles/image/legumes.png')}}" alt="legumes" class="image_header"></a>
+    <a href="{{ path('select_produit_fruits') }}"><img src="{{ asset('styles/image/fruit.png')}}" alt="fruit" class="image_header"></a>
+    <a href="{{ path('select_produit_baies') }}"><img src="{{ asset('styles/image/baies.png')}}" alt="baies" class="image_header"></a>
+    <a href="{{ path('select_produit_citron') }}"><img src="{{ asset('styles/image/citron.png')}}" alt="citron" class="image_header"></a>
+    <a href="{{ path('select_produit_apple') }}"><img src="{{ asset('styles/image/apple.png')}}" alt="apple" class="image_header"></a>
+    <a href="{{ path('select_produit_rasin') }}"><img src="{{ asset('styles/image/rasin.png')}}" alt="rasin" class="image_header"></a>
+    <a href="{{ path('select_produit_noisettes') }}"><img src="{{ asset('styles/image/noisettes.png')}}" alt="noisettes" class="image_header"></a>
+</div>

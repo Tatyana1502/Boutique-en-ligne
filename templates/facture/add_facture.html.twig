@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formuliare ajouter !{% endblock %}
+
+{% block body %}
+
+<h1>Votre Facture</h1>
+<div class="chapeau">
+    <p>Numero de Facture: {{ facture.idFacture }}</p>
+    <p>Date de la facture: {{ facture.date ? facture.date|date('Y-m-d') : 'N/A' }}</p>
+    <div class="facture1">
+        <p class="facture1">Vendeur Entreprise: 
+            <br>{{ facture.getIdEntreprise().getNomEntreprise() }}
+            <br>{{ facture.getIdEntreprise().getAdresseEntreprise() }}
+            <br>{{ facture.getIdEntreprise().getPhoneEntreprise() }}
+            <br>{{ facture.getIdEntreprise().getEmailEntreprise() }}
+        </p>
+        <p>Acheteur: 
+            <br>{{ facture.getUser().getNomUser()}}
+            {{ facture.getUser().getPrenomUser() }}
+            <br>{{ facture.getUser().getCodePostalUser() }}
+            {{ facture.getUser().getAdresseUser() }}
+            <br>{{ facture.getUser().getPhoneUser() }}
+            {{ facture.getUser().getEmail() }}
+        </p>
+    </div>
+</div>
+    <table class="table table-striped table-hover">
+        <tr class="table_chapeau">
+            <td>Nomenclature </td>
+            <td>Prix </td>
+            <td>Quantite</td>
+            <td>Somme</td>
+        </tr>
+        {% for ligneCommande in facture.idCommande.getToutLigneCommande() %}
+        <tr>
+            <td> {{ ligneCommande.idProduit.nom_produit }}</td> 
+            <td> {{ ligneCommande.idProduit.prix_produit }}</td> 
+            <td> {{ ligneCommande.quantite_achat }}</td> 
+            <td> {{ ligneCommande.total }}</td> 
+        </tr>
+        {% endfor %}
+    </table>
+<p class="chapeau">Somme totale: {{ facture.getSomme() }}</p>
+
+{% endblock %}

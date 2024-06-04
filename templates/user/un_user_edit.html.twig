@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formuliare modifier !{% endblock %}
+
+{% block body %}
+
+
+<h1>Edit votre donnée</h1>
+<div class="connection">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    {{ form_end(form) }}
+</div>
+<a href='{{ path('un_user') }}'><button type="submit" id="connection_submit" name="connection[submit]">back to Espace personnel </button></a>
+
+{% endblock %}
+
+
+
+

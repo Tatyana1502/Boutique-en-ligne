@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+
+<h1> Espace personnel </h1>
+
+<div style='font-size: 55px; display: flex; justify-content: center; '>
+  <td> {{user.getNomUser()}}</td> 
+  <td> {{user.getPrenomUser()}}</td> <br>
+</div>
+
+<a href="{{ path('edit_user') }}"><button type="submit" id="connection_submit" name="connection[submit]">Modifier mes données</button></a> <br>
+<a href="{{ path('afficher_to_favorites') }}"><button type="submit" id="connection_submit" name="connection[submit]">Mes produits favoris</button></a> <br>
+<a href="{{ path('all_lignecommande') }}"><button type="submit" id="connection_submit" name="connection[submit]">Mon panier</button></a> <br>
+<a href="{{ path('all_commande') }}"><button type="submit" id="connection_submit" name="connection[submit]">Ma commande ACTIVE (en attente de paiement)</button></a> <br>
+<a href="{{ path('all_facture_par_user') }}"><button type="submit" id="connection_submit" name="connection[submit]">Ma Facture (déjà paye)</button></a> <br>
+
+{% endblock %}

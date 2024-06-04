@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+<h1> Liste de commande</h1>
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>nom_produit</td>
+            <td>prix produit</td>
+            <td>quantite_achat</td>
+            <td>total</td>
+        </tr>
+        {% for commande in toutLigneCommande %}
+            <p class="chapeau">numero Commande :{{ commande.idCommande }}</p>
+            {% for ligneCommande in commande.toutLigneCommande %}
+            <tr>
+                <td>{{ ligneCommande.idProduit.nom_produit }}</td>
+                <td>{{ ligneCommande.idProduit.prix_produit }}</td>
+                <td>{{ ligneCommande.quantite_achat }}</td>
+                <td>{{ ligneCommande.total}}</td>
+            </tr>
+            {% endfor %}
+    </table>
+        <a href="{{ path('add_facture') }}"><button class='item'>payment</button></a> 
+         {% endfor %}
+{% endblock %}
+
+

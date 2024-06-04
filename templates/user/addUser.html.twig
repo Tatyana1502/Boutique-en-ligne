@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+{# 
+{% block user %} #}
+
+{% block body %}
+<h1>S'inscrire</h1>
+<div class="registration">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+</div>
+
+{% endblock %}
+

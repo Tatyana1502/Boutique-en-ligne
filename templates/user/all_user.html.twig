@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello UserController!{% endblock %}
+{% block body %}
+
+    <h1> Liste des USERS </h1>
+
+    {% if app.user %}
+        {% if 'ROLE_ADMIN' in app.user.roles %}
+            <a href="{{ path('user_add') }}" ><button> Créer </button></a>
+        {% endif %}
+    {% endif %}
+
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>nom user </th>
+            <th>prenom user</th>
+            <th>phone user</th>
+            <th>email</th>
+            <th>code postal user</th>
+            <th>adresse user</th>
+            <th>date naiss user</th>
+            <th>date creation user</th>
+        </tr>
+        {% for user in user %}
+            <tr>
+                <td> {{user.getNomUser()}}</td> 
+                <td> {{user.getPrenomUser()}}</td> 
+                <td> {{user.getPhoneUser()}}</td> 
+                <td> {{user.getEmail()}}</td> 
+                <td> {{user.getCodePostalUser()}}</td> 
+                <td> {{user.getAdresseUser()}}</td> 
+                <td> {{user.getDateNaissUser()}}</td> 
+                <td> {{user.getDateCreationUser()|date("Y-m-d")}}</td> 
+                {% if app.user %}
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
+                        <td>
+                            <a href="{{ path('delete_user', {'id': user.id}) }}" onclick = "return confirm('Ete vous sûr de vouloir supprrimer cet USER?')"><button>Supprimer</button></a> 
+                        </td>   
+                    {% endif %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

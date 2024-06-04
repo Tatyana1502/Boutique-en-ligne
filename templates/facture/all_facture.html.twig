@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+
+<h1> Liste des Factures </h1>
+
+<table class="table">
+   <tr>
+      <th>Date facture</th>
+      <th>Numero de facture</th>
+      <th>Nom user</th>
+      <th>Email user</th>
+      <th>Total somme</th>
+      <th>Action</th>
+   </tr>
+   {% for facture in facture %}
+   <tr>
+      <td> {{facture.getDate()|date("Y-m-d")}}</td> 
+      <td> {{facture.getIdFacture()}}</td> 
+      <td> {{facture.getUser().getNomUser()}}</td>
+      <td> {{facture.getUser().getEmail()}}</td>
+      <td> {{facture.getSomme()}}</td>
+      <td>
+         <a href="{{ path('affiche_facture', {'idFacture': facture.idFacture}) }}"><button class="btn btn-primary btn-big">Afficher cette facture</button></a> 
+      </td>  
+   </tr>
+   {% endfor %}
+</table>
+{% endblock %}

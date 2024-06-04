@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+
+<h1> Liste des produit favorites</h1>
+
+<div class="gallery">
+    {% if favoriteProduct is not empty %}
+        {% for produit in favoriteProduct %}
+            <div class="item">
+                <div class="item-img-box">
+                    <img src="{{ asset('styles/image/' ~ produit.image_produit) }}" alt="Produit Image" class="item-img"><br>
+                </div>
+                <div class="item-info">
+                    <tr class="item"> {{produit.nom_produit }}</tr> <br>
+                    <tr class="item"> {{produit.description_produit}}</tr> <br>
+                    <tr class="item"> {{produit.prix_produit}}</tr> € <br>
+                    <tr class="item"> {{produit.categorie_produit}}</tr> <br>
+                    <tr class="item"> {{produit.quantity_produit }}</tr> kg <br>
+                </div>
+                <td>
+                    <a href="{{ path('delete_favoriteProduct', {'idProduit': produit.idProduit}) }}"><button>Suprimer</button></a>
+                    <a href="{{ path('edit_produit_lignecommande', {'idProduit': produit.idProduit}) }}"><button>Ajouter au panier</button></a> 
+                </td>
+            </div>
+        {% endfor %}
+    {% endif %}
+ </div> 
+{% endblock %}

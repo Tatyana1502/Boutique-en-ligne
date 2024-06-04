@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    {% if not (app.user and 'ROLE_ADMIN' in app.user.roles) %}
+        <h1> Liste des produits </h1>
+        <div class="gallery">
+            {% for produit in produit %}
+                <div class="item">
+                    {% if not (app.user and 'ROLE_ADMIN' in app.user.roles) %}
+                        {% if app.user %}
+                            <div class="image_favorite"> 
+                                <a href="{{ path('add_to_favorites', {'idProduit': produit.idProduit}) }}"  >
+                                    <img src="{{ asset('styles/image/coeur1.png')}}" alt="Ajouter aux favoris" class="image_favorite">
+                                </a>
+                            </div> 
+                        {% endif %}
+                        <div class="item-img-box">
+                            <img src="{{ asset('styles/image/' ~ produit.getImageProduit()) }}" alt="Produit Image" class="item-img"></tr> 
+                        </div>
+                        <div class="item-info">
+                            <tr class="item"> {{produit.getNomProduit()}}</tr> <br>
+                            <tr class="item"> {{produit.getDescriptionProduit()}}</tr> <br>
+                            <tr class="item"> {{produit.getPrixProduit()}}</tr> € <br>
+                            <tr class="item"> {{produit.getCategorieProduit()}}</tr> <br>
+                            <tr class="item"> {{produit.getQuantityProduit()}}</tr> kg <br>
+                            <a href="{{ path('edit_produit_lignecommande', {'idProduit': produit.idProduit}) }}"><button {% if not app.user %}disabled{% endif %}>
+                            {% if app.user %}Ajouter au panier{% else %}Connectez-vous pour ajouter au panier{% endif %}</button></a>
+                        </div>
+                        {% if app.user and 'ROLE_USER' in app.user.roles %}
+                            {% if produit in app.user %}
+                                <a href="{{ path('remove_from_favorite', {'idProduit': produit.idProduit}) }}"><button>suprimer aime</button></a> <br>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}    
+                </div> 
+            {% endfor %}  
+        </div>
+    {% endif %}
+    {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+        <tr>
+            <a href="{{ path('add_produit') }}" ><button class="btn btn-primary btn-big"> Créer </button></a>
+        </tr>
+        <div class='table-produit'>
+            <table class="table">
+                <tr>
+                    <th>nom produit</th>
+                    <th>description produit</th>
+                    <th>prix produit, € </th>
+                    <th>categorie produit</th>
+                    {# <th>image_produit</th> #}
+                    <th>quantity produit</th>
+                    <th>action</th>
+                </tr>
+                {% for produit in produit %}
+                    <tr>
+                        <td> {{produit.getNomProduit()}}</td> 
+                        <td> {{produit.getDescriptionProduit()}}</td> 
+                        <td> {{produit.getPrixProduit()}}</td> 
+                        <td> {{produit.getCategorieProduit()}}</td>
+                        <td> {{produit.getQuantityProduit()}}</td> 
+                        <td><a href="{{ path('edit_produit', {'idProduit': produit.idProduit}) }}"><button>Modifier</button></a> 
+                            <a href="{{ path('delete_produit', {'idProduit': produit.idProduit}) }}" onclick = "return confirm('Ete vous sûr de vouloir supprrimer cet PRODUIT?')"><button>Supprimer</button></a> 
+                        </td>
+                    </tr>   
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+    
+{% endblock %}

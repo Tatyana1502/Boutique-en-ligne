@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+   <h1> choisez le role User</h1>
+   <div class="mb-3">
+      {{ form_start(form) }}
+         <div style="display: flex; justify-content: center; width: 100%">
+            <button type="submit"  style="width: 25%">VALIDER</button>
+         </div>
+      {{ form_end(form) }}
+   </div>
+   <a href="{{ path('app_home') }}"><button>RETOURNE</button></a>
+
+{% endblock %}

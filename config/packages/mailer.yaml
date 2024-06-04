@@ -1,3 +1,8 @@
 framework:
     mailer:
-        dsn: '%env(MAILER_DSN)%'
+        dsn: smtp://c1e36bba190dcf:e3f95783c82921@sandbox.smtp.mailtrap.io:2525
+        # dsn: '%env(MAILER_DSN)%'
+        # dsn: "smtp://tatyana15022011@gmail.com:nfcmrf0303@smtp.gmail.com:587"
+        # transport: gmail
+        # username: tatyana15022011@gmail.com
+        # password: nfcmrf0303

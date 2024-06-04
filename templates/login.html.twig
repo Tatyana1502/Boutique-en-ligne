@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+{% block body %}
+    <div class="container-connection"> 
+        <form class="connection-form" method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData,'security') }}
+                </div>
+            {% endif %}
+            {% if app.user %}
+                <div class="connection">
+                    You are logged in as {{ app.user.userIdentifier }},
+                    <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %}
+            <h1>Please sign in</h1>
+            <label for="username" >Email</label>
+            <input type="email" value="{{ last_username }}" name="_username" id="username" autocomplete="email" required autofocus>
+            <label for="password">Password</label>
+            <input type="password" name="_password" id="password" class="formcontrol" autocomplete="current-password" required><br>
+            <input type="hidden" name="_target_path" value="">
+            <button class="primary-btn" type="submit"> Sign in </button><br>                  
+            <div class="primary-btn">
+                <a href="{{ path('user_add') }}">Registration</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

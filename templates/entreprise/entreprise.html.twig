@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+
+<h1> Notre Entreprise .$nom_entreprise </h1>
+
+<table class="table table-striped table-hover">
+    <tr>
+        <th>nom_entreprise</th>
+        <th>adresse_entreprise</th>
+        <th>phone_entreprise</th>
+        <th>email_entreprise</th>
+        <th>descripsion_entreprise</th>
+    </tr>
+    {% for entreprise in entreprise %}
+        <tr>
+            <td> {{entreprise.getNomEntreprise()}}</td> 
+            <td> {{entreprise.getAdresseEntreprise()}}</td> 
+            <td> {{entreprise.getPhoneEntreprise()}}</td> 
+            <td> {{entreprise.getEmailEntreprise()}}</td> 
+            <td> {{entreprise.getDescripsionEntreprise()}}</td> 
+        </tr>
+        <a href="{{ path('edit_entreprise', {'idEntreprise': entreprise.idEntreprise} ) }}" ><button> Edit </button></a>
+
+    {% endfor %}
+</table>
+{% endblock %}

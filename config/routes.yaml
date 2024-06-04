@@ -3,3 +3,20 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+contact:
+    path:       /{_locale}/contact
+    controller: App\Controller\ContactController::index
+    requirements:
+        _locale: en|fr|ua
+homepage_english:
+    path: /en
+    controller: App\Controller\HomeController::index
+homepage_french:
+    path: /fr
+    controller: App\Controller\HomeController::index
+homepage_ukrainian:
+    path: /ua
+    controller: App\Controller\HomeController::index
+login_route:
+    path: /login
+    controller: App\Controller\LoginController::login

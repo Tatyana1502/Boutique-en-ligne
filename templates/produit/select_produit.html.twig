@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<h1> choisez le role User</h1>
+
+{{ form_start(form) }}
+
+  <button type="submit">VALIDER</button>
+
+{{ form_end(form) }}
+   <a href="{{ path('app_home') }}"><button>RETOURNE</button></a>
+{% endblock %}
